@@ -1,0 +1,31 @@
+@import '../../../../assets/styles/color';
+
+.footer {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: $cloud;
+  height: 3em;
+  z-index: 1000;
+  padding: 1em;
+  border-top: 1px solid $grey;
+
+  .items {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  a {
+    color: rgb(82, 82, 82);
+    padding: 0 1em;
+  }
+
+  .space-a {
+    padding-right: 8em;
+
+    @media only screen and (max-width: 600px) {
+      padding-right: 3em;
+    }
+  }
+}

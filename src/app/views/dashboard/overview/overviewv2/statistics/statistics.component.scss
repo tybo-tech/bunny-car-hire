@@ -1,0 +1,57 @@
+@import '../../../../../../assets/styles/color';
+
+.stats {
+  margin: .1em auto;
+  padding: 1em;
+  display: grid;
+  grid-template-columns: repeat(6, 12em);
+  grid-gap: .5em;
+
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: repeat(2,50%);
+  }
+
+  .stat {
+    background:$black;
+    color: $white;
+    box-shadow: $box-shadow;
+    width: 100%;
+    text-align: left;
+    padding: 1em;
+    margin: .1em auto;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: .75em;
+    margin-right: 1em;
+    position: relative;
+    height: 9em;
+
+    span {
+      display: block;
+      font-size: 2.5em;
+      font-weight: 900;
+      position: absolute;
+      left: .78em;
+      bottom: .1em;
+    }
+  }
+
+  .red{
+    background-image: linear-gradient(to right top, #370505, #680025, #9a004e, #c90087, #eb12cf);
+  }
+  .green{
+    background-image: linear-gradient(to right top, #43ff00, #00c234, #008737, #004f2a, #031c13);
+  }
+  .info{
+    background-image: linear-gradient(to right top, #00e9ff, #13b1b6, #187b76, #124840, #031c15);
+  }
+}
+
+
+.my-card
+{
+    position:absolute;
+    left:40%;
+    top:-20px;
+    border-radius:50%;
+}

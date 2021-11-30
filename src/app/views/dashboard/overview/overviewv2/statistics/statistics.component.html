@@ -1,0 +1,41 @@
+<div class="stats">
+
+
+
+  <div class="stat red" (click)="goto('invoices/'+BOOKING_STATUSES.PENDING_APROVAL.Name)">
+    Pending review
+    <span> {{pendingReview?.length}}</span>
+  </div>
+
+
+  <div class="stat" (click)="goto('invoices/'+BOOKING_STATUSES.APPROVED.Name)">
+    Reviewed not paid
+    <span> {{pendingPayments?.length}}</span>
+  </div>
+
+  <div class="stat green" (click)="goto('invoices/'+BOOKING_STATUSES.PAID.Name)">
+    Paid waiting for collection date.
+    <span> {{paidBookings?.length}}</span>
+  </div>
+
+
+  <div class="stat info" (click)="goto('invoices/'+BOOKING_STATUSES.RENTED.Name)">
+    Currently rented
+    <span> {{currentRentedOutBookings?.length}}</span>
+  </div>
+
+  <div class="stat red" (click)="goto('invoices/'+BOOKING_STATUSES.DECLINED.Name)">
+    Declined bookings
+    <span> {{declinedBookings?.length}}</span>
+  </div>
+
+  <div class="stat" (click)="goto('invoices/All'+BOOKING_STATUSES.PENDING_APROVAL.Name)">
+    All
+    <span> {{orders?.length}}</span>
+  </div>
+
+
+
+
+</div>
+

@@ -1,0 +1,100 @@
+@import '../../../../../assets/styles/color';
+
+.my-card {
+  background: $white;
+  padding: 1em;
+  border-radius: .333em;
+  margin: 1em auto;
+
+  h3 {
+    padding: 1em 0;
+  }
+
+  @media only screen and (max-width: 600px) {
+    margin: 1em .4em;
+  }
+}
+
+
+
+.pop {
+  color: $pop;
+  font-weight: 900;
+  padding: .5em 0;
+}
+
+
+.actions {
+  display: grid;
+  grid-template-columns: 20em auto;
+  padding: 2em 0;
+
+
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: 100%;
+
+    button {
+      width: 100%;
+      margin: .5em auto;
+    }
+
+  }
+
+  button {
+    display: block;
+    width: fit-content;
+
+    @media only screen and (max-width: 600px) {
+      grid-template-columns: 100%;
+      width: 100%;
+      margin: .5em auto;
+
+
+    }
+  }
+}
+
+.my-label {
+  padding: .7em 0;
+}
+
+.cons {
+  max-width: 90%;
+
+
+
+  @media only screen and (max-width: 600px) {
+    max-width: 100%;
+  }
+
+  .row {
+    margin: .5em 0;
+    border-bottom: 1px solid $cloud;
+    padding-bottom: .7em;
+  }
+}
+
+.devider {
+  padding: 5em 1em;
+
+  @media only screen and (max-width: 600px) {
+    padding: 1em;
+  }
+}
+
+.form-check-label {
+  color: $black;
+}
+
+.tagsss {
+  padding: 1em ;
+  span {
+    margin-right: 1em;
+  }
+}
+
+.rates{
+  .form-control{
+    // width: fit-content;
+  }
+}

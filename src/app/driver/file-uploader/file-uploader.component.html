@@ -1,0 +1,43 @@
+<!-- <div class="mb-3" *ngIf="!img || !img.length">
+  <label for="formFile" class="form-label">{{label}}</label>
+  <input class="form-control" #file type="file" (change)="uploadFile(file.files)" id="formFile">
+</div>
+
+
+
+<div class="mb-3" *ngIf="img && img.length ">
+  <div class="alert alert-info">
+    <b> {{imgLabel}} uplaoded</b>
+    <br> <br>
+    <a [href]="img" target="_blank" class="alert-link">View file</a> <br>
+    <a (click)="change=true" class="alert-link">Change file</a>
+
+    <div class="mb-3" *ngIf="change">
+      <label for="formFile" class="form-label">{{label}}</label>
+      <input class="form-control" #file type="file" (change)="uploadFile(file.files)" id="formFile">
+    </div>
+  </div>
+</div> -->
+
+<li *ngIf="!img || !img.length" class="list-group-item d-flex justify-content-between align-items-center">
+  <div>
+    <i class="fas fa-file"></i> {{label}} not uploaded
+
+  </div>
+  <div>
+    <a class="btn btn-warning" (click)="file.click()">Uplaod</a>
+  </div>
+</li>
+
+
+<li *ngIf="img && img.length" class="list-group-item d-flex justify-content-between align-items-center">
+  <div>
+    <a class="link" [href]="img" target="_blank"> <i class="fas fa-file"></i> {{label}} uploaded
+    </a>
+  </div>
+  <div>
+    <a class="btn btn-success" (click)="file.click()">Change</a>
+  </div>
+</li>
+
+<input class="form-control" style="display: none;" #file type="file" (change)="uploadFile(file.files)" id="formFile">

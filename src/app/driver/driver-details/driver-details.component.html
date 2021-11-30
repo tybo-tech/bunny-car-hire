@@ -1,0 +1,115 @@
+<div class="actions">
+  <button type="button" *ngIf="!user" (click)="login()" class="btn btn-link">Login to my account</button>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-floating">
+      <input type="text" class="form-control" class="form-control" [(ngModel)]="customer.Name" id="floatingPassword">
+      <label for="floatingPassword">Customer Full Name *</label>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-floating">
+      <input type="text" class="form-control" class="form-control" [(ngModel)]="customer.Surname" id="floatingPassword">
+      <label for="floatingPassword">Customer Surname *</label>
+    </div>
+  </div>
+</div>
+
+
+<br>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-floating">
+      <input type="text" class="form-control" class="form-control" [(ngModel)]="customer.Email" id="floatingPassword">
+      <label for="floatingPassword">Customer Email *</label>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-floating">
+      <input type="password" class="form-control" class="form-control" [(ngModel)]="customer.Password" id="floatingPassword">
+      <label for="floatingPassword">Password *</label>
+    </div>
+  
+    <br>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-floating">
+      <input type="text" class="form-control" class="form-control" [(ngModel)]="customer.IDNumber" id="floatingPassword">
+      <label for="floatingPassword">Id number *</label>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-floating">
+      <input type="text" class="form-control" class="form-control" [(ngModel)]="customer.PhoneNumber" id="floatingPassword">
+      <label for="floatingPassword">PhoneNumber *</label>
+    </div>
+  
+    <br>
+  </div>
+</div>
+
+
+
+
+
+<br>
+<h3>
+  Supporting documents
+</h3>
+
+<br>
+<div class="row">
+  <div class="col-sm-6">
+    <app-file-uploader [img]="customer.IdCopy" [imgLabel]="'ID copy'" [label]="'Please upload your ID copy'"
+    (urlEvent)="bindIdCopy($event)"></app-file-uploader>
+  <br>
+  </div>
+  <div class="col-sm-6">
+    <app-file-uploader [img]="customer.ProofOfAddress" [imgLabel]="'Proof of address'"
+    [label]="'Please upload your proof of address'" (urlEvent)="bindProofOfAddress($event)">
+  </app-file-uploader>
+  </div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-sm-6">
+    <app-file-uploader [img]="customer.BankStatement" [imgLabel]="'Bank statement'"
+    [label]="'Please upload your 3 months bank statement'" (urlEvent)="bindBankStatement($event)">
+  </app-file-uploader>
+  <br>
+  </div>
+  <div class="col-sm-6">
+    <app-file-uploader [img]="customer.DriverLisence" [imgLabel]="'Driver`s lisence'"
+    [label]="'Please upload your driver`s lisence'" (urlEvent)="bindDriverLisence($event)">
+  </app-file-uploader>
+  </div>
+</div>
+
+<br>
+
+<br>
+
+
+
+<!-- </div> -->
+<br><br>
+<button class="btn btn-primary" type="button" [disabled]="!customer.Name" type="button" (click)="save()">
+  Submit booking for verification
+</button>
+<button class="more secondary-btn" *ngIf="showGotoCustomer" type="button" type="button"
+  (click)="view(existingCustomer)">
+  We have found you!, yes it me!
+</button>
+
+<br>
+<!-- <a href="#" class="btn btn-primary">Find cars</a> -->

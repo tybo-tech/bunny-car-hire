@@ -1,0 +1,43 @@
+.container {
+  margin-top: 12em;
+
+  @media only screen and (max-width: 600px) {
+    margin-top: 3em;
+
+  }
+
+  .card {
+    margin-bottom: 2em;
+  }
+}
+
+.badge {
+  margin-right: .5em;
+}
+
+.card-header {
+  background: rgb(41, 41, 41);
+  font-weight: 900;
+  color: #fff;
+}
+
+.date-time {
+  display: grid;
+  grid-template-columns: 60% 40%;
+
+  input {
+    font-weight: 900;
+  }
+}
+
+.arrow {
+  text-align: center;
+  padding: 40% 1em;
+
+  @media only screen and (max-width: 600px) {
+    padding: 1em;
+  }
+}
+.form_error{
+  border: 3px solid red;
+}

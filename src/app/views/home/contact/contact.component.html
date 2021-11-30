@@ -1,0 +1,130 @@
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-dark text-white"><i class="fa fa-envelope"></i> Contact us.
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" [(ngModel)]="name" class="form-control" id="name" aria-describedby="emailHelp"
+                placeholder="Enter name" required>
+            </div>
+            <div class="form-group">
+              <label for="name">Phone No</label>
+              <input type="text" [(ngModel)]="phone" class="form-control" id="name" aria-describedby="emailHelp"
+                placeholder="Enter name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" [(ngModel)]="email" class="form-control" id="email" aria-describedby="emailHelp"
+                placeholder="Enter email" required>
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea class="form-control" [(ngModel)]="massage" id="message" rows="6" required></textarea>
+            </div>
+            <div class="mx-auto">
+              <button type="submit" [disabled]="!name || !email || !phone || !massage" type="button"
+                (click)="sendEmail()" class="btn btn-primary text-right">Submit</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-4">
+      <div class="card bg-light mb-3">
+        <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-info"></i> Info</div>
+        <div class="card-body">
+          <!-- <p>214 Essenwood, Musgrave</p>
+          <p>Berea</p>
+          <p>4001</p> -->
+          <p>Email : <a href="mailto:info@bunnycarhire.co.za">info@bunnycarhire.co.za</a></p>
+          <p>Tel. <a href="tel:0319080299">031 908 0299</a></p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div class="section">
+
+  <h1 class="main-heading">
+    contact <span>us.</span>
+  </h1>
+  <p>
+    Please contact us if you have any questions related to our products or if you need technical support.
+    You may e-mail or fill out the contact form and let us know your needs.
+    Our sales representatives will contact you as soon as possible.
+    <br>
+    Please fill all the fields with * to complete your inquiry.
+  </p>
+
+
+  <div class="form">
+    <div class="form-item">
+      <label for="name">Your Name *</label>
+      <input type="text" class="form-control" [(ngModel)]="name" placeholder="">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Your Email *</label>
+      <input type="email" [(ngModel)]="email" placeholder="">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Your Phone *</label>
+      <input type="tel" [(ngModel)]="phone" placeholder="">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Message *</label>
+      <textarea  class="form-control"[(ngModel)]="massage" placeholder="">
+
+      </textarea>
+    </div>
+    <div class="form-item">
+
+
+      <button class="btn btn-primary" [disabled]="!name || !email || !phone || !massage" type="button" (click)="sendEmail()">
+        Send Message
+      </button>
+
+      <br>
+
+
+
+      <span *ngIf="!name || !email || !phone || !massage" class="error">
+
+        Please fill all the fields with * to complete your inquiry.
+      </span>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<div class="modal" *ngIf="sent">
+  <div class="body">
+    <p>
+      Thank you for contacting us we will reply as soon as possible
+    </p>
+
+
+    <button class="secondary" type="button" (click)="back()">
+      Ok
+    </button>
+  </div>
+</div> -->

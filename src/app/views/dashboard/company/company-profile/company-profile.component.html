@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card" *ngIf="selectedTab == 0">
+      <div class="card-header">
+        Basic details
+      </div>
+      <div class="card-body">
+        <div class="inputs">
+
+
+          <label>Company Name</label>
+          <input *ngIf="isEditMode" type="text" [(ngModel)]="user.Company.Name" class="form-control">
+          <div class="value" *ngIf="!isEditMode">{{user.Company.Name}}</div>
+
+          <label>Bio/About shop</label>
+          <textarea *ngIf="isEditMode" [(ngModel)]="user.Company.Description" class="form-control"></textarea>
+          <div class="value" *ngIf="!isEditMode">{{user.Company.Description}}</div>
+
+
+          <label>Company Phone</label>
+          <input *ngIf="isEditMode" type="text" [(ngModel)]="user.Company.Phone" class="form-control">
+          <div class="value" *ngIf="!isEditMode">{{user.Company.Phone}}</div>
+
+          <label>Company Email(Cannot be changed)</label>
+          <input *ngIf="isEditMode" type="email" disabled [(ngModel)]="user.Company.Email" class="form-control">
+          <div class="value" *ngIf="!isEditMode">{{user.Company.Email}}</div>
+
+          <label>Company Address</label>
+          <div class="value" *ngIf="!isEditMode">{{user.Company.AddressLine}}</div>
+          <app-address-widget-dashboard *ngIf="isEditMode" [addressLineHome]="user.Company.AddressLine"
+            (adressChangedEvent)="onAdressEventShipping($event)"></app-address-widget-dashboard>
+          <br>
+          <br>
+
+          <label>Company VAT</label>
+          <input *ngIf="isEditMode" type="number" [(ngModel)]="user.Company.Vat" class="form-control">
+          <div class="value" *ngIf="!isEditMode">{{user.Company.Vat}}</div>
+
+
+          <label>Allowed radius(Km)</label>
+          <input *ngIf="isEditMode" type="number" [(ngModel)]="user.Company.Location" class="form-control">
+          <div class="value" *ngIf="!isEditMode">{{user.Company.Location}}</div>
+          <div (click)="toggleEditMode()" *ngIf="!isEditMode" class="logout logo-btn edit-btn">
+            Edit Info
+          </div>
+
+          <button (click)="back()" *ngIf="isEditMode" style="margin-right: 1em;" class="btn btn-secondary">
+            Back
+          </button>
+          <button (click)="save()" *ngIf="isEditMode" class="btn btn-primary">
+            Save company basic info
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="col-lg-2">
+
+    <div class="card">
+
+      <div class="card-header">
+        Logo
+      </div>
+      <div class="card-body">
+        <img *ngIf="user.Company.Dp" style="width: 8em;" [src]="user.Company.Dp" alt="">
+
+        <input type="file" accept="image/png, image/jpeg" #file placeholder="Choose file" multiple
+          (change)="uploadFile(file.files)" style="display:none;">
+        <br>
+        <button (click)="file.click()" class="btn btn-dark">
+          Change logo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main" *ngIf="user && user.Company && user.Company.Dp">
+
+
+
+
+
+  </div>
+
+  <div class="main" *ngIf="user && user.Company && !user.Company.Dp">
+    <div class="no-data">
+      <h1>
+        Final step, Company logo set up.
+      </h1>
+      <img src="assets/images/common/store.svg" alt="">
+      <p>
+        We need your <b>shop logo to increase customer recognition,</b> you can not continue without a shop logo.
+      </p>
+      <input type="file" accept="image/png, image/jpeg" #file2 placeholder="Choose file" multiple
+        (change)="uploadFile(file2.files)" style="display:none;">
+      <button class="logout   logo-btn center-btn" (click)="file2.click()">Upload company logo</button>
+      <button class="logout   logo-btn  skip" (click)="skip()">Skip for now</button>
+
+    </div>
+  </div>
+
+</div>
+
+
+<app-loader *ngIf="showLoader"></app-loader>

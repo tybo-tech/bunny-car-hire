@@ -1,0 +1,78 @@
+<div class="my-table">
+  <div class="page-content page-container" id="page-content">
+    <div class="padding">
+      <div class="row container d-flex justify-content-center">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h1 class="card-title"> {{orderStatus}} Bookings ({{orders?.length}})</h1>
+              <br>
+              <select class="form-control form-select" aria-label="Default select example" (change)="filter()"
+                style="font-size: .75em;" [(ngModel)]="orderStatus">
+                <option [value]="stat" *ngFor="let stat of orderStatuses">
+                  {{stat}}
+                </option>
+              </select>
+              <br>
+              <div class="table-responsive">
+                <table class="table" *ngIf="orders">
+                  <thead>
+                    <tr>
+                      <th>Car</th>
+                      <td></td>
+                      <th>Customer Name</th>
+                      <th>Created On</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let order of orders; let i = index" (click)="view(order)">
+                      <td>
+                        <img *ngIf="order.ProductImage" class="icon-image"
+                          [src]="order.ProductImage" alt="">
+                      </td>
+                      <td>{{order.ProductName}}</td>
+                      <td>{{order.Customer?.Name}}</td>
+                      <td>{{order.CreateDate | date:'mediumDate'}}</td>
+                      <td><span class="badge bg-danger">{{order.Status}}</span></td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="top-bar-conatiner">
+
+  <div class="top-bar" *ngIf="orders">
+    <div class="menu-back">
+      <span class="material-icons" (click)="back()">
+        chevron_left
+      </span>
+    </div>
+
+    <div class="name pointer" (click)="back()">
+      Back to dashboard
+    </div>
+    <div class="btn-menu">
+
+    </div>
+  </div>
+</div>

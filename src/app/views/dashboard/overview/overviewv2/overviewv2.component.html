@@ -1,0 +1,58 @@
+<app-dash-nav *ngIf="showMenu"></app-dash-nav>
+<div class="overlay" *ngIf="showMenu" (click)="menu()"></div>
+
+<div class="" *ngIf="user && user.Company && products">
+  <!-- <div class="top-bar-conatiner">
+
+    <div class="top-bar" *ngIf="user && user.Company">
+      <div class="menu-back" (click)="menu()">
+        <span class="material-icons">
+          menu
+        </span>
+      </div>
+  
+  
+      <div class="name pointer" (click)="goto('user-profile')">
+        Hi , {{user.Name}}
+      </div>
+  
+    </div>
+  </div> -->
+
+
+  <div class="row">
+    <div class="col-lg-4">
+      <br><br>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            Wecolme to {{user.Company.Name}}
+          </h5>
+        </div>
+        <div class="card-body">
+          <a (click)="gotoShop()" class="btn btn-secondary" style="margin-right: 1em;">Visit website</a>
+          <a  class="btn btn-primary" (click)="goto('company-profile')">Edit company</a>
+        </div>
+
+        <!-- <span class="material-icons" style="left: 2em;" [cdkCopyToClipboard]="companyLink" (click)="copy()">
+          share
+        </span> -->
+      </div>
+    </div>
+  </div>
+
+
+  <h3 class="heading">
+    Bookings overview
+  </h3>
+
+  <app-statistics *ngIf="user && user.UserType === ADMIN"></app-statistics>
+
+
+
+  <app-product-list-cards *ngIf="user && user.UserType === ADMIN"></app-product-list-cards>
+
+  <app-super-overview *ngIf="user && user.UserType === SUPER"></app-super-overview>
+
+
+</div>

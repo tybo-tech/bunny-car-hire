@@ -1,0 +1,21 @@
+<div class="main" *ngIf="locationModel">
+  <h4>
+    {{locationModel?.addressLine}}
+  </h4>
+</div>
+
+
+<agm-map *ngIf="locationModel" [latitude]="locationModel.lat" [longitude]="locationModel.lng" [zoom]="zoom"
+[disableDefaultUI]="false" [zoomControl]="false">
+
+<agm-marker [latitude]="locationModel.lat" [longitude]="locationModel.lng" 
+[markerDraggable]="draggable" [iconUrl]="icon"
+  (dragEnd)="markerDragEnd($event)">
+
+  <agm-info-window>
+    <strong>Move the map to find your location</strong>
+  </agm-info-window>
+
+</agm-marker>
+
+</agm-map>

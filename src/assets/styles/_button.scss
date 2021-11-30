@@ -1,0 +1,22 @@
+button,
+.btn {
+  border-radius: none;
+  border: none;
+  width: fit-content;
+  font-weight: 600;
+  border-radius: .5em;
+  transition: .4s ease-in-out;
+  padding: .75em 1.5em;
+}
+
+.btn-primary {
+  background: $pop ;
+  color: $white ;
+
+  &:hover{
+    background: #4e0202;
+  }
+  &:disabled{
+    background: $grey;
+  }
+}

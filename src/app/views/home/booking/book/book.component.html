@@ -1,0 +1,544 @@
+<div *ngIf="product && order" id="top" class="container">
+  <div class="row">
+    <div class="col-lg-8">
+
+      <div class="card">
+        <div class="card-header">
+          Pick up and Drop Off
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-5">
+              <div [ngClass]="pickUpClass">
+                <label><b>Pick up</b> location</label>
+                <app-address-widget [addressLineHome]="order.PickUpLocation"
+                  (adressChangedEvent)="onAdressEvent($event)">
+                </app-address-widget>
+                <p class="alert alert-success" *ngIf="pickUpError">
+                  Sorry we do not cover your location at the moment, only bookings around Durban and nearby place are
+                  allowed,
+                  The car must picked and returned, in or nearby Durban.
+                </p>
+              </div>
+
+              <div class="date-time">
+                <div class="col">
+                  <label for="">Date </label>
+                  <input type="date" class="form-control" [(ngModel)]="order.PickUpDate" (change)="orderChanged()">
+                  <div class="badge bg-info text-dark">
+                    {{order.PickUpDate | date:'fullDate'}}
+                  </div>
+                </div>
+
+                <div class="col">
+                  Time
+                  <input type="time" class="form-control" [(ngModel)]="order.PickUpTime" (change)="orderChanged()">
+
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <h1 class="arrow">
+                <i class="fas fa-arrow-right"></i>
+              </h1>
+            </div>
+
+
+            <div class="col-lg-5">
+              <div [ngClass]="dropOffClass">
+                <label><b>Drop off</b> location</label>
+                <app-address-widget [addressLineHome]="order.DropOffLocation"
+                  (adressChangedEvent)="onDropOfAdressEvent($event)">
+                </app-address-widget>
+                <p class="alert alert-success" *ngIf="dropOffError">
+                  Sorry we do not cover your location at the moment.
+                  The car must returned, in or nearby Durban.
+                </p>
+              </div>
+
+              <div class="date-time">
+                <div class="col">
+                  <label for="">Date </label>
+                  <input type="date" class="form-control" [(ngModel)]="order.ReturnDate" (change)="orderChanged()">
+                  <div class="badge bg-dark">
+                    {{order.ReturnDate | date:'fullDate'}}
+                  </div>
+                </div>
+
+                <div class="col">
+                  Time
+                  <input type="time" class="form-control" [(ngModel)]="order.ReturnTime" (change)="orderChanged()">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          Selected vehicle information
+        </div>
+        <div class="card-body">
+
+
+
+          <div class="row" style="padding:1em 0">
+
+            <div class="col-lg-4">
+              <img [src]="product.FeaturedImageUrl" style="width: 90%;" />
+            </div>
+
+            <div class="col-lg-6">
+              <br>
+              <h5 class="card-title"> {{product.Name}}</h5>
+              <h4 style="font-weight: 900;">
+                {{order.SubTotal | currency:'R'}} For {{order.NumberOfDays}} day(s)
+              </h4>
+              <p>
+                {{order.RatePrice | currency:'R'}} per day
+              </p>
+              <div class="tagsss">
+                <span class="badge bg-dark" *ngIf="product.ParentCategoryName">{{product.ParentCategoryName}}</span>
+                <span class="badge bg-dark" *ngIf="product.Bags">{{product.Bags}} Bags</span>
+                <span class="badge bg-dark" *ngIf="product.Persons">{{product.Persons}} Persons</span>
+                <span class="badge bg-dark" *ngIf="product.Transmission">{{product.Transmission}}</span>
+                <span class="badge bg-dark" *ngIf="product.Aircon">Aircon : {{product.Aircon}}</span>
+              </div>
+              <br>
+              <div *ngIf="product.TotalStock <= 0" class="alert alert-warning" role="alert">
+                This car is currently unavailable
+                <br>
+                <br>
+                <a routerLink="/cars" class="btn btn-success">Choose a different vihicle</a>
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                  aria-expanded="true" aria-controls="collapseOne">
+                  More Details
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="card-body">
+
+
+                          <p class="card-text">
+                            <span class="stock-check" *ngIf="product.TotalStock==0">Rented out</span>
+                          </p>
+
+                          <div class="" class="line-break" [innerHtml]="product.Description"></div>
+
+
+                        </div>
+                      </div>
+
+                      <div class="col-lg-12">
+                        <!-- <img [src]="product.FeaturedImageUrl" class="card-img-top" (swipeleft)="handleSwipe('left')"
+                        (swiperight)="handleSwipe('right')" [ngClass]="imageClass" /> -->
+
+                        <div id="carouselExampleIndicators" class="carousel carousel-dark slide"
+                          data-bs-ride="carousel">
+                          <div class="carousel-indicators" *ngIf="product.AllImages && product.AllImages.length > 1">
+                            <button type="button" *ngIf="product.AllImages[0]"
+                              data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                              aria-current="true" aria-label="Slide 1"></button>
+
+
+                            <button type="button" *ngIf="product.AllImages[1]"
+                              data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                              aria-label="Slide 2"></button>
+
+
+                            <button type="button" *ngIf="product.AllImages[2]"
+                              data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                              aria-label="Slide 3"></button>
+
+                            <button type="button" *ngIf="product.AllImages[3]"
+                              data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                              aria-label="Slide 3"></button>
+
+                            <button type="button" *ngIf="product.AllImages[4]"
+                              data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                              aria-label="Slide 3"></button>
+
+                            <button type="button" *ngIf="product.AllImages[5]"
+                              data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5"
+                              aria-label="Slide 3"></button>
+
+                            <button type="button" *ngIf="product.AllImages[6]"
+                              data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6"
+                              aria-label="Slide 3"></button>
+                          </div>
+                          <div class="carousel-inner">
+                            <div class="carousel-item active" *ngIf="product.AllImages[0]">
+                              <img [src]="product.AllImages[0].Url" (click)=viewImage(product.AllImages[0])
+                                class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" *ngIf="product.AllImages[1]">
+                              <img [src]="product.AllImages[1].Url" (click)=viewImage(product.AllImages[1])
+                                class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" *ngIf="product.AllImages[2]">
+                              <img [src]="product.AllImages[2].Url" (click)=viewImage(product.AllImages[2])
+                                class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" *ngIf="product.AllImages[3]">
+                              <img [src]="product.AllImages[3].Url" (click)=viewImage(product.AllImages[3])
+                                class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" *ngIf="product.AllImages[4]">
+                              <img [src]="product.AllImages[4].Url" (click)=viewImage(product.AllImages[4])
+                                class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" *ngIf="product.AllImages[5]">
+                              <img [src]="product.AllImages[5].Url" (click)=viewImage(product.AllImages[5])
+                                class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" *ngIf="product.AllImages[6]">
+                              <img [src]="product.AllImages[6].Url" (click)=viewImage(product.AllImages[6])
+                                class="d-block w-100" alt="...">
+                            </div>
+                          </div>
+                          <button class="carousel-control-prev" type="button"
+                            *ngIf="product.AllImages && product.AllImages.length > 1"
+                            data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next"
+                            *ngIf="product.AllImages && product.AllImages.length > 1" type="button"
+                            data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="user && user.UserType == USER_TYPES.CUSTOMER.Name && product.TotalStock > 0 ">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              Driver details
+            </div>
+
+
+            <div class="card-body">
+              <p>
+                Full Name: <b>{{user.Name}} {{user.Surname}}</b>
+              </p>
+
+              <p>
+                Email: <b>{{user.Email}}</b>
+              </p>
+
+              <p>
+                Phone Number: <b>{{user.PhoneNumber}}</b>
+              </p>
+
+
+              <p>
+                Id Number: <b>{{user.IDNumber}}</b>
+              </p>
+              <button class="btn-secondary" (click)="logout()">Logout</button>
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card" [ngClass]="loginClass">
+            <div class="card-header">
+              Required documents
+            </div>
+
+
+            <div class="card-body">
+
+              <ul class="list-group">
+
+                <app-file-uploader [img]="user.IdCopy" [imgLabel]="'ID copy'" [label]="'Please upload your ID copy'"
+                  (urlEvent)="bindIdCopy($event)"></app-file-uploader>
+
+
+                <app-file-uploader [img]="user.BankStatement" [imgLabel]="'Bank statement'"
+                  [label]="'3 months bank statement'" (urlEvent)="bindBankStatement($event)">
+                </app-file-uploader>
+
+                <app-file-uploader [img]="user.ProofOfAddress" [imgLabel]="'Proof of address'"
+                  [label]="'Proof of address'" (urlEvent)="bindProofOfAddress($event)">
+                </app-file-uploader>
+
+                <app-file-uploader [img]="user.DriverLisence" [imgLabel]="'Driver`s lisence'"
+                  [label]="'Driver`s lisence'" (urlEvent)="bindDriverLisence($event)">
+                </app-file-uploader>
+              </ul>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row" *ngIf="!user || !user.UserId &&  product.TotalStock > 0">
+        <div class="col-lg-12">
+          <div class="card" [ngClass]="loginClass">
+            <div class="card-header">
+              Driver details
+            </div>
+            <div class="card-body">
+              <div class="accordion" id="accordionExample2">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
+                      Login to existing account
+                    </button>
+                  </h2>
+                  <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne1"
+                    data-bs-parent="#accordionExample2">
+                    <div class="accordion-body">
+                      <app-sign-in-form></app-sign-in-form>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo1">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
+                      First time customer
+                    </button>
+                  </h2>
+                  <div id="collapseTwo2" class="accordion-collapse collapse" aria-labelledby="headingTwo1"
+                    data-bs-parent="#accordionExample2">
+                    <div class="accordion-body">
+                      <app-sign-up-form></app-sign-up-form>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          Rate, Fuel & Deposit
+        </div>
+        <div class="card-body">
+
+
+          <div class="row" *ngIf="product.Rates && product.Rates.length">
+            <div class="col-lg-12">
+              <div class="my-label">
+                <b>
+                  Rate
+
+                </b>
+                <select class="form-control form-select" aria-label="Default select example" (change)="orderChanged()"
+                  style="font-size: .75em;" [(ngModel)]="order.Rate">
+                  <option [value]="rate.ItemId" *ngFor="let rate of product.Rates">
+                    {{rate.Name}}(R{{rate.Price}} Per day) , {{rate.LimitValue}} Free Kms, R{{rate.OffLimitPrice}} per
+                    extra km
+                  </option>
+                </select>
+                <br>
+              </div>
+
+            </div>
+
+
+
+
+
+
+          </div>
+
+          <div class="row" *ngIf="!product.Rates || !product.Rates.length">
+            <div class="col-lg-6">
+              <div class="my-label">
+                <b>
+                  Rate
+
+                </b>
+              </div>
+
+            </div>
+
+            <div class="col-lg-6">
+              <div class="my-label">
+                Standard rate(R{{product.RegularPrice}})
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="my-label">
+                <b>
+                  Fuel
+
+                </b>
+              </div>
+
+            </div>
+
+            <div class="col-lg-6">
+              <div class="my-label">
+                Pick up full, return full.
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="my-label">
+                <b>
+                  Deposit required
+
+                </b>
+              </div>
+
+            </div>
+
+            <div class="col-lg-6">
+              <div class="my-label">
+                {{product.PriceFrom | currency :' R'}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card" *ngIf=" product.TotalStock > 0">
+        <div class="card-header">
+          Summary
+        </div>
+        <div class="card-body">
+          <h5>
+            Sub Total for {{order.NumberOfDays}} day(s): {{order.SubTotal | currency: 'R '}}
+          </h5>
+
+          <h5>
+            Refundable Deposit: {{order.Deposit | currency :' R'}}
+          </h5>
+
+          <h5>
+            Vat: {{order.Vat | currency :' R'}}
+          </h5>
+
+
+          <br>
+          <h3>
+            Total: {{order.Total | currency :' R'}}
+          </h3>
+
+          <br>
+
+          <button class="btn btn-primary" (click)="validateBooking()"> Submit booking for verification
+          </button>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="quick-add" *ngIf="showConfirmSave">
+  <div class="form">
+
+    <h3>
+      Confirm booking
+
+    </h3>
+
+    <div class="card-body">
+      <p>
+        A credit card is required for placing the deposit on your rental at collection. However, you may still pay for
+        your rental with a debit card or cheque card.
+      </p>
+      <br>
+      <hr>
+
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="flexCheckDefault1" value="" id="flexCheckChecked1"
+          checked>
+        <label class="form-check-label" for="flexCheckChecked1">
+          <b>I have a credit card for the deposit at collection</b>
+        </label>
+      </div>
+      <br>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" [(ngModel)]="flexCheckDefault2" id="flexCheckChecked2">
+        <label class="form-check-label" for="flexCheckChecked2">
+          Driver is 23 years or older, and has had a driver's license for at least 3 years
+        </label>
+      </div>
+      <br>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" [(ngModel)]="flexCheckDefault3" id="flexCheckDefault3">
+        <label class="form-check-label" for="flexCheckDefault3">
+          I agree to the Terms & Conditions
+        </label>
+      </div>
+
+    </div>
+
+
+    <button class="btn btn-secondary" (click)="showConfirmSave = false" style="margin-right: 1em;">Cancel</button>
+    <button class="btn btn-primary" (click)="saveInvoice()"
+      [disabled]="!flexCheckDefault1 || !flexCheckDefault2 || !flexCheckDefault3">Send for verification</button>
+
+  </div>
+</div>
+
+
+<p-dialog [header]="modalHeader" [(visible)]="displayModal" [modal]="true" [styleClass]="modal" [draggable]="false"
+  [resizable]="false">
+  <div class="p-m-0" [innerHtml]="modalBody">
+  </div>
+  <ng-template pTemplate="footer">
+    <button class="btn btn-dark" (click)="displayModal=false; back()">Ok</button>
+    <button class="btn btn-primary" (click)="displayModal=false; bookings()">Go to bookings</button>
+  </ng-template>
+</p-dialog>

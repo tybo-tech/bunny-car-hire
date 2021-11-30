@@ -1,0 +1,19 @@
+<div class="main" *ngIf="order">
+  <app-cart-items [order]="order"></app-cart-items>
+
+  <div class="buttons">
+  
+   <div class="">
+    <button class="mat-secondary secondary" *ngIf="order.Orderproducts.length"  (click)="continueShopping()">
+      Continue shopping
+    </button>
+   </div>
+
+   <div class="">
+    <button *ngIf="order.Orderproducts.length" class="mat-primary checkout"  (click)="checkout()">
+      Checkout
+    </button>
+   </div>
+  </div>
+
+</div>

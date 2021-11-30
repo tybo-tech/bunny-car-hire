@@ -1,0 +1,30 @@
+@import '../../../../../assets/styles/color';
+
+.container{
+  padding-top: 4em;
+}
+
+.uploads{
+  a{
+    display: block;
+    padding: .5em;
+    width: fit-content;
+    font-weight: 600;
+  }
+}
+
+.btn{
+  margin-right: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.card-header {
+  background: rgb(41, 41, 41);
+  font-weight: 900;
+  color: #fff;
+}
+
+
+.card-title{
+  font-weight: 900;
+}

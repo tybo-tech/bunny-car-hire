@@ -1,0 +1,168 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-lg-2 phone-only">
+      <div class="menu-bar">
+        <i class="fas fa-bars" *ngIf="!showMenu" (click)="showMenu = !showMenu"></i>
+        <i class="fas fa-times" *ngIf="showMenu" (click)="showMenu = !showMenu"></i>
+      </div>
+
+      <div class="phone-menu" *ngIf="showMenu">
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <a routerLink="/admin/dashboard"  (click)="showMenu = !showMenu" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active-link"><i
+                class="fas fa-th-large"></i> Dasboard</a>
+          </li>
+
+          <li class="list-group-item">
+            <a routerLink="/admin/dashboard/customers"   (click)="showMenu = !showMenu" [routerLinkActiveOptions]="{exact: true}"
+              routerLinkActive="active-link"><i class="fas fa-users"></i> Customers</a>
+          </li>
+
+
+          <li class="list-group-item">
+            <a routerLink="/admin/dashboard/products" (click)="showMenu = !showMenu" [routerLinkActiveOptions]="{exact: true}"
+              routerLinkActive="active-link"><i class="fas fa-car"></i> Car List</a>
+          </li>
+          <li class="list-group-item">
+            <a routerLink="/admin/dashboard/rates"  (click)="showMenu = !showMenu" [routerLinkActiveOptions]="{exact: true}"
+              routerLinkActive="active-link"><i class="fas fa-chart-line"></i> Rates Settings</a>
+          </li>
+
+          <!-- <li class="list-group-item">
+            <a routerLink="/admin/dashboard/part-types" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active-link"><i
+                class="fas fa-layer-group"></i> Part Types</a>
+          </li> -->
+
+          <li class="list-group-item">
+            <a routerLink="/admin/dashboard/invoices/All"  (click)="showMenu = !showMenu" routerLinkActive="active-link"><i class="fas fa-book-open"></i>
+              Bookings</a>
+          </li>
+
+          <li class="list-group-item">
+            <a (click)="logout()"><i class="fas fa-power-off"></i> Logout</a>
+          </li>
+
+
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-2 pc-only">
+      <div class="slide-nav">
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <a routerLink="/admin/dashboard" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active-link"><i
+                class="fas fa-th-large"></i> Dasboard</a>
+          </li>
+
+          <li class="list-group-item">
+            <a routerLink="/admin/dashboard/customers" [routerLinkActiveOptions]="{exact: true}"
+              routerLinkActive="active-link"><i class="fas fa-users"></i> Customers</a>
+          </li>
+
+
+          <li class="list-group-item">
+            <a routerLink="/admin/dashboard/products" [routerLinkActiveOptions]="{exact: true}"
+              routerLinkActive="active-link"><i class="fas fa-car"></i> Car List</a>
+          </li>
+          <li class="list-group-item">
+            <a routerLink="/admin/dashboard/rates" [routerLinkActiveOptions]="{exact: true}"
+              routerLinkActive="active-link"><i class="fas fa-chart-line"></i> Rates Settings</a>
+          </li>
+
+          <!-- <li class="list-group-item">
+            <a routerLink="/admin/dashboard/part-types" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active-link"><i
+                class="fas fa-layer-group"></i> Part Types</a>
+          </li> -->
+
+          <li class="list-group-item">
+            <a routerLink="/admin/dashboard/invoices/All" routerLinkActive="active-link"><i class="fas fa-book-open"></i>
+              Bookings</a>
+          </li>
+
+          <li class="list-group-item">
+            <a (click)="logout()"><i class="fas fa-power-off"></i> Logout</a>
+          </li>
+
+
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-10 router-outlet">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="overlay" *ngIf="loadingUx && loadingUx.Loading">
+  <div class="container looods">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="loader">
+          <div class="loader-inner">
+            <div class="loading one"></div>
+          </div>
+          <div class="loader-inner">
+            <div class="loading two"></div>
+          </div>
+          <div class="loader-inner">
+            <div class="loading three"></div>
+          </div>
+          <div class="loader-inner">
+            <div class="loading four"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- 
+
+
+
+<app-dashboard-top-bar></app-dashboard-top-bar>
+<div class="dasboard">
+
+
+  <div class="dash-body">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+<div class="pop" [ngClass]="message.Class" *ngIf="message">
+  <p>
+    {{message.Message}}
+  </p>
+  <div class="">
+    <span class="material-icons" (click)="message = null">
+      close
+    </span>
+  </div>
+</div>
+
+
+
+<div class="overlay" *ngIf="loadingUx && loadingUx.Loading">
+  <div class="loading">
+    <mat-spinner></mat-spinner>
+    <h3 *ngIf="loadingUx.Message">
+      {{loadingUx.Message}}
+    </h3>
+  </div>
+</div>
+<button *ngIf="showScrollUp" class="scroll-top" (click)="totop()">
+  <span class="material-icons">
+    arrow_circle_up
+  </span>
+</button> -->
+<p-toast position="top-right" baseZIndex="9999999999"></p-toast>

@@ -1,0 +1,5 @@
+<input ngx-google-places-autocomplete [options]='options' [(ngModel)]="addressLineHome"
+  placeholder="Search address" class="form-control"  #places="ngx-places"
+  (onAddressChange)="handleAddressChange($event)" />
+  
+  <!-- <button class="primary" (click)="userCurrentLocation()">User current location</button> -->

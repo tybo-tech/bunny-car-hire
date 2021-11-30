@@ -1,0 +1,21 @@
+<div class="container" *ngIf="order">
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">
+        <span><i class="fas fa-check-circle"></i></span>
+        Payment successful.
+      </h2>
+      <p class="card-text">
+        Thank you {{order.Customer.Name}} for completing the payment for {{order.ProductName}}. <br><br>
+        <b>What happens next?</b> <br>
+
+        Collect the vihicle on {{order.PickUpDate | date:'mediumDate'}} {{order.PickUpTime}} <br>
+        <i class="fas fa-map-marker-alt"></i> {{order.PickUpLocation}}
+      </p>
+    </div>
+    <div class="card-body"><a (click)="back()" class="btn btn-primary" data-abc="true">Confirm</a> </div>
+  </div>
+
+ 
+</div>

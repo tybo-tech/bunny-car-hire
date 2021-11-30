@@ -1,0 +1,64 @@
+@import '../../../../assets/styles/color';
+
+.menu-bar {
+  background: $primary;
+  padding: 1em;
+  color: $white;
+}
+
+
+
+.slide-nav, .phone-menu {
+  height: 100vh;
+  background: #2C3A47;
+  position: fixed;
+  width: 15em;
+  padding: 5em 0;
+
+  .list-group {
+    background: none;
+
+    .list-group-item {
+      background: none;
+
+      a {
+        color: $white;
+        display: block;
+        padding: .4em 1em;
+        border-radius: 2em;
+
+        .fas {
+          position: relative;
+          margin-right: 1em;
+        }
+      }
+
+      .active-link {
+        background: #545454 !important;
+      }
+    }
+  }
+}
+
+.phone-menu{
+  z-index: 100000000;
+}
+
+.container-fluid {
+  margin: 0;
+  padding: 0;
+  max-height: 100vh;
+  overflow-y: scroll;
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+.looods {
+  margin-top: 15%;
+}
+
+
+.router-outlet{
+  padding: 2em;
+}

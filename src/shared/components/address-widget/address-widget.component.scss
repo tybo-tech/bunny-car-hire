@@ -1,0 +1,27 @@
+@import '../../../assets/styles/color';
+
+input {
+  margin-bottom: 1em;
+}
+
+agm-map {
+  height: 70vh;
+  width: 100%;
+
+  @media only screen and (max-width: 600px) {
+    height: 100vh;
+
+  }
+}
+
+.user {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 100000;
+  padding: 2em;
+  padding-bottom: 4em;
+  background: $cloud;
+
+}

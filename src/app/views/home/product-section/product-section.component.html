@@ -1,0 +1,119 @@
+<div class="ppppp">
+  <div class="main-products phone-only">
+
+    <!-- 
+      <div class="newin " *ngIf="newInproducts && newInproducts.length">
+        <img src="assets/images/newin.png"  alt="">
+      
+      </div>
+       -->
+      
+      <div class="picked" *ngIf="allProducts && allProducts.length">
+    
+    
+        <div class="products">
+          <div class="product" *ngFor="let product of allProducts  | searchproductshome:searchString; let i = index">
+            <div class="image">
+              <img [src]="product.FeaturedImageUrl" alt="Awesome Sunglasses" (click)="viewMore(product)">
+            </div>
+    
+            <div class="product-details">
+              <span class="stock-check" *ngIf="product.TotalStock==0">Rented out</span>
+              <p>
+                {{product.Name}}
+    
+                <span class="price" *ngIf="!product.OnSale">
+                  {{product.RegularPrice | currency:'R'}} Per day
+                </span>
+                <span class="price" *ngIf="product.OnSale">
+                  <del> {{product.RegularPrice | currency:'R'}}</del> <br>
+                  {{product.SalePrice | currency:'R'}} Per day
+                </span>
+              </p>
+
+              <div class="tagsss">
+                <span class="badge bg-dark" *ngIf="product.ParentCategoryName">{{product.ParentCategoryName}}</span>
+                <span class="badge bg-dark" *ngIf="product.Bags">{{product.Bags}} Bags</span>
+                <span class="badge bg-dark" *ngIf="product.Persons">{{product.Persons}} Persons</span>
+                <span class="badge bg-dark" *ngIf="product.Transmission">{{product.Transmission}}</span>
+                <span class="badge bg-dark" *ngIf="product.Aircon">Aircon : {{product.Aircon}}</span>
+              </div>
+
+              <div class="action">
+                <br>
+                <button class="btn btn-primary" (click)="viewMore(product)">Book now </button>
+              </div>
+            </div>
+    
+    
+          </div>
+        </div>
+      </div>
+    
+      
+    
+    
+      
+    
+    
+    </div>
+    
+    
+    <div class="main-products pc-only">
+    
+    
+    
+        
+      <div class="picked" *ngIf="allProducts && allProducts.length">
+    
+    
+        <div class="products">
+          <div class="product" *ngFor="let product of allProducts  | searchproductshome:searchString; let i = index">
+            <div class="image">
+              <img [src]="product.FeaturedImageUrl" alt="Awesome Sunglasses" (click)="viewMore(product)">
+            </div>
+    
+            <div class="product-details">
+
+              <div class="tagsss">
+                <span class="badge bg-dark" *ngIf="product.ParentCategoryName">{{product.ParentCategoryName}}</span>
+                <span class="badge bg-dark" *ngIf="product.Bags">{{product.Bags}} Bags</span>
+                <span class="badge bg-dark" *ngIf="product.Persons">{{product.Persons}} Persons</span>
+                <span class="badge bg-dark" *ngIf="product.Transmission">{{product.Transmission}}</span>
+                <span class="badge bg-dark" *ngIf="product.Aircon">Aircon : {{product.Aircon}}</span>
+              </div>
+              <span class="stock-check" *ngIf="product.TotalStock==0">Rented out</span>
+    
+              <p>
+                {{product.Name}}
+    
+                <span class="price" *ngIf="!product.OnSale">
+                  {{product.RegularPrice | currency:'R'}} Per day
+                </span>
+                <span class="price" *ngIf="product.OnSale">
+                  <del> {{product.RegularPrice | currency:'R'}}</del>  <br> 
+                  {{product.SalePrice | currency:'R'}} Per day
+                </span>
+              </p>
+
+          
+              <div class="action">
+                <button class="btn btn-primary" (click)="viewMore(product)">Book now </button>
+              </div>
+            </div>
+    
+    
+          </div>
+        </div>
+      </div>
+    
+    
+    
+    
+    
+    
+      
+    </div>
+</div>
+
+<app-home-loader *ngIf="loading"></app-home-loader>

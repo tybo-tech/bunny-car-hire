@@ -1,0 +1,4 @@
+<input type="search" ngx-google-places-autocomplete [options]='options' [(ngModel)]="addressLineHome"
+  placeholder="Search address" class="form-control" #places="ngx-places"
+  (onAddressChange)="handleAddressChange($event)" />
+  

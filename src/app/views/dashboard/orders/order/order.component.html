@@ -1,0 +1,195 @@
+<div class="top-bar-conatiner">
+
+  <div class="top-bar">
+    <div class="menu-back ">
+      <span class="material-icons" (click)="back()">
+        keyboard_arrow_left
+      </span>
+    </div>
+
+
+    <div class="name link tal" (click)="back()">
+      Bookings
+    </div>
+
+
+    <div class="name" *ngIf="order">
+      Booking
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="order">
+
+  <div class="row" *ngIf="error">
+    <div class="col-lg-4 grid-margin stretch-card">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <b>Note:</b> <br>
+        {{error}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row" *ngIf="success">
+    <div class="col-lg-4 grid-margin stretch-card">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <b>Note:</b> <br>
+        {{success}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-lg-4" *ngIf="order && order.Product">
+      <div class="card">
+        <div class="card-header">
+          <b>Vehicle Info</b>
+        </div>
+        <img [src]="order.ProductImage" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{order.Product.Name}}</h5>
+          <p class="card-text">
+            Days: <b>{{order.NumberOfDays}} Days</b><br>
+            Price perday: <b>{{order.RatePrice  | currency: 'R '}}</b><br>
+            Sub Total: <b>{{order.SubTotal | currency: 'R '}}</b><br>
+          </p>
+
+          <div *ngIf="order.Notes" class="alert alert-secondary" role="alert">
+           {{order.Notes}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <b> Customer Details</b>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            Name: <b>{{order.Customer.Name}} {{order.Customer.Surname}} </b>
+          </p>
+
+          <p class="card-text">
+            Email: <b>{{order.Customer.Email}} </b>
+          </p>
+
+          <p class="card-text">
+            Phone Number: <b>{{order.Customer.PhoneNumber}} </b>
+          </p>
+
+          <p class="card-text">
+            ID Number: <b>{{order.Customer.IDNumber}} </b>
+          </p>
+
+          <p class="uploads">
+            <b>Uploads</b> <br>
+            <a *ngIf="order.Customer.IdCopy" [href]="order.Customer.IdCopy" target="_blank" class="link-success">Id
+              Copy</a>
+            <a *ngIf="order.Customer.ProofOfAddress" [href]="order.Customer.ProofOfAddress" target="_blank"
+              class="link-success">Proof Of Address</a>
+            <a *ngIf="order.Customer.DriverLisence" [href]="order.Customer.DriverLisence" target="_blank"
+              class="link-success">Driver Lisence</a>
+            <a *ngIf="order.Customer.BankStatement" [href]="order.Customer.BankStatement" target="_blank"
+              class="link-success">Bank Statement</a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-lg-4" *ngIf="order">
+      <div class="card">
+        <div class="card-header">
+          <b>Summary</b>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Pick up & Drop Off</h5>
+
+          <p class="card-text">
+            <b>Pick up</b> <br><br>
+            <i class="fas fa-calendar-day"></i> {{order.PickUpDate | date:'mediumDate'}} {{order.PickUpTime}} <br>
+            <i class="fas fa-map-marker-alt"></i> {{order.PickUpLocation}}
+            <br>
+            <a [href]="order.PickUpDirection" class="btn btn-info" target="_blank"><i class="fas fa-route"></i>
+              Navigate</a>
+          </p>
+          <p class="card-text">
+            <b>Drop off</b> <br><br>
+            <i class="fas fa-calendar-day"></i> {{order.ReturnDate | date:'mediumDate'}} {{order.ReturnTime}} <br>
+            <i class="fas fa-map-marker-alt"></i> {{order.DropOffLocation}}
+            <br>
+            <a [href]="order.DropOffDirection" class="btn btn-info" target="_blank"><i class="fas fa-route"></i>
+              Navigate</a>
+          </p>
+          <hr>
+          <h3><span class="badge bg-dark">{{order.Status}}</span></h3>
+          <hr>
+          <p>
+            <span> Created on... </span> <b> {{order.CreateDate | date: 'mediumDate'}}</b><br>
+            <span *ngIf="order.Shipping && order.ShippingPrice">
+              {{order.Shipping}}... <b>{{order.ShippingPrice  | currency:'R '}}</b><br>
+            </span>
+            Sub Total for {{order.NumberOfDays}} day(s)... <b>{{order.SubTotal  | currency:'R ' }}</b><br>
+            Deposit... <b>{{order.Deposit  | currency:'R '}}</b><br>
+            Vat... <b>{{order.Vat  | currency:'R '}}</b><br>
+            Paid... <b>{{order.Paid  | currency:'R '}}</b><br><br>
+            Total... <b>{{order.Total  | currency:'R '}}</b><br>
+            Due... <b>{{order.Due  | currency:'R '}}</b><br>
+
+          </p>
+          <a class="btn btn-secondary" *ngIf="getButtonLabel('secondary')" (click)="changeStatus('secondary')">
+            {{getButtonLabel('secondary')}}
+          </a>
+
+          <a class="btn btn-primary" *ngIf="getButtonLabel('primary')" (click)="changeStatus('primary')">
+            {{getButtonLabel('primary')}}
+          </a>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+<div class="quick-add" *ngIf="showNotes">
+  <div class="form">
+    <h3>
+      {{reasonHeader}}
+    </h3>
+
+
+
+    <div class="form-item">
+      <label for="">Reason(s)</label>
+      <textarea class="form-control" type="text" [(ngModel)]="order.Notes"
+        placeholder=""></textarea>
+    </div>
+
+
+
+    <div class="form-item">
+      <button class="btn btn-secondary" style="margin-right: 1em;" (click)="showNotes = false">Back</button>
+      <button (click)="decline()" class="btn btn-primary" [disabled]="!order.Notes">{{reasonAction}}</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- <a href="" style='background: #4CAF50; color: #fff; padding: 1em 2em; border-radius: .5em;'>View booking </a> -->
